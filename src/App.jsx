@@ -297,7 +297,8 @@ const Testimonials = () => (
                 "We use Overr1de to baseline every client site. The AI summary saves us hours writing deliverables.",
             },
           ].map((t, i) => (
-            <div key={i} className="rounded-2xl border border-white/10 bg.white/5 p-6".replace(".white",".white")>
+            <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+
               <div className="flex items-center gap-2 text-amber-300">
                 {Array.from({ length: 5 }).map((_, k) => (
                   <Star key={k} className="h-4 w-4 fill-current" />
