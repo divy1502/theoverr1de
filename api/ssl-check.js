@@ -10,7 +10,6 @@ export default function handler(req, res) {
     return;
   }
 
-  // Normalize the URL
   let target = url.trim();
   if (!/^https?:\/\//i.test(target)) {
     target = "https://" + target;
