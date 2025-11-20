@@ -167,17 +167,35 @@ const ProgressBar = ({ value }) => (
 const Tool = () => {
   const [url, setUrl] = useState("");
 
+  // simple “valid” check – no regex needed for now
   const valid = useMemo(() => {
-    if (!url) return false;
-    return /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/.*)?$/i.test(url.trim());
+    return !!url && url.trim().length > 3;
   }, [url]);
 
   const { progress, running, result, start, reset } = useMockScan(url);
+  const [sslInfo, setSslInfo] = useState(null);
+  const [sslError, setSslError] = useState(null);
 
   const handleStart = () => {
     if (!valid) return;
+
     reset();
     start();
+
+    setSslInfo(null);
+    setSslError(null);
+
+    // call the backend SSL checker
+    fetch(`/api/ssl-check?url=${encodeURIComponent(url)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.error) {
+          setSslError(data.error);
+        } else {
+          setSslInfo(data);
+        }
+      })
+      .catch(() => setSslError("Request failed"));
   };
 
   return (
@@ -237,6 +255,7 @@ const Tool = () => {
             </div>
           </div>
 
+          {/* your existing mock scan result */}
           {result && (
             <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
               <div className="flex items-center justify-between">
@@ -279,6 +298,50 @@ const Tool = () => {
                   Download PDF
                 </button>
               </div>
+            </div>
+          )}
+
+          {/* 🔽 ADD THIS PART DIRECTLY AFTER result-block 🔽 */}
+          {sslInfo && (
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h3 className="text-white font-semibold flex items-center gap-2">
+                <Lock className="h-5 w-5 text-cyan-300" />
+                SSL Certificate
+              </h3>
+              <div className="mt-3 grid gap-3 md:grid-cols-2 text-sm text-gray-200">
+                <div>
+                  <div className="text-gray-400 text-xs">Host</div>
+                  <div>{sslInfo.host}</div>
+                </div>
+                <div>
+                  <div className="text-gray-400 text-xs">Issuer</div>
+                  <div>{sslInfo.issuer || "Unknown"}</div>
+                </div>
+                <div>
+                  <div className="text-gray-400 text-xs">Valid From</div>
+                  <div>{new Date(sslInfo.validFrom).toLocaleString()}</div>
+                </div>
+                <div>
+                  <div className="text-gray-400 text-xs">Valid To</div>
+                  <div>{new Date(sslInfo.validTo).toLocaleString()}</div>
+                </div>
+                <div>
+                  <div className="text-gray-400 text-xs">Days Left</div>
+                  <div
+                    className={
+                      sslInfo.isExpired ? "text-red-400" : "text-emerald-400"
+                    }
+                  >
+                    {sslInfo.isExpired ? "Expired" : `${sslInfo.daysLeft} days`}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {sslError && (
+            <div className="mt-4 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+              SSL check failed: {sslError}
             </div>
           )}
         </motion.div>
