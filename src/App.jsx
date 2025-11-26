@@ -477,65 +477,113 @@ const Features = () => (
 );
 
 const Pricing = () => (
-  <section id="pricing" className="border-t border-white/10 py-16">
-    <div className="max-w-7xl mx-auto px-6">
+  <section id="pricing" className="border-t border-white/10 py-20 relative">
+    {/* Background Glow */}
+    <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,255,180,0.08),transparent_70%)]" />
+
+    <div className="max-w-7xl mx-auto px-6 relative">
       <motion.div initial="hidden" whileInView="show" variants={fade}>
-        <h2 className="text-3xl font-semibold text-white">Simple pricing</h2>
-        <p className="text-gray-300 mt-2">Start free. Upgrade anytime.</p>
+        <h2 className="text-3xl md:text-4xl font-semibold text-white text-center">
+          Choose Your Security Plan
+        </h2>
+        <p className="text-gray-300 text-center mt-2">
+          Simple prices. No hidden fees. Upgrade when you're ready.
+        </p>
 
-        <div className="grid md:grid-cols-3 gap-6 mt-8">
-          {[
-            [
-              "Free",
-              "$0",
-              ["1 scan/day", "SSL + Headers", "Email summary"],
-              false,
-            ],
-            ["Pro", "$9/mo", ["5 sites", "PDF reports", "Alerts"], true],
-            [
-              "Business",
-              "$29/mo",
-              ["Unlimited", "White-label", "Team seats"],
-              false,
-            ],
-          ].map(([name, price, feats, highlight], i) => (
-            <div
-              key={i}
-              className={cn(
-                "p-6 flex flex-col bg-white/5 rounded-2xl border",
-                highlight
-                  ? "border-cyan-400/40 shadow-cyan-400/20 shadow-lg"
-                  : "border-white/10"
-              )}
-            >
-              <div className="flex justify-between items-center">
-                <h3 className="text-white font-semibold">{name}</h3>
-                {highlight && (
-                  <span className="text-xs text-cyan-300">Popular</span>
-                )}
-              </div>
-              <div className="text-3xl text-white font-bold mt-2">{price}</div>
+        {/* Pricing Grid */}
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          {/* FREE */}
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:scale-[1.02] transition-all duration-300">
+            <h3 className="text-white font-semibold text-xl">Free</h3>
+            <p className="text-3xl font-bold text-white mt-2">$0</p>
+            <p className="text-gray-400 text-sm mt-1">Perfect for testing</p>
 
-              <ul className="mt-4 space-y-2 text-gray-300 text-sm">
-                {feats.map((f, j) => (
-                  <li key={j} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" /> {f}
-                  </li>
-                ))}
-              </ul>
+            <ul className="mt-6 space-y-2 text-gray-300 text-sm">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> 1 scan/day
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> SSL +
+                Header checks
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Email
+                summary
+              </li>
+            </ul>
 
-              <button
-                className={cn(
-                  "mt-6 py-2 rounded-xl font-medium",
-                  highlight
-                    ? "bg-cyan-400 text-black"
-                    : "bg-white/10 text-white hover:bg-white/20"
-                )}
-              >
-                {highlight ? "Upgrade" : "Subscribe"}
-              </button>
+            <button className="mt-6 w-full py-2 rounded-xl font-medium bg-white/10 hover:bg-white/20 text-white">
+              Start Free
+            </button>
+          </div>
+
+          {/* PRO (Middle) */}
+          <div className="bg-white/5 backdrop-blur-xl border border-cyan-400/40 rounded-2xl p-6 shadow-[0_0_40px_-8px_rgba(0,255,255,0.3)] hover:scale-[1.03] transition duration-300">
+            <h3 className="text-white font-semibold text-xl flex items-center gap-2">
+              Pro
+              <span className="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-lg">
+                Popular
+              </span>
+            </h3>
+
+            <p className="text-3xl font-bold text-white mt-2">$9/mo</p>
+            <p className="text-gray-400 text-sm mt-1">For small teams</p>
+
+            <ul className="mt-6 space-y-2 text-gray-300 text-sm">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> 5 sites
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> PDF
+                reports
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Email
+                alerts
+              </li>
+            </ul>
+
+            <button className="mt-6 w-full py-2 rounded-xl font-medium bg-cyan-400 text-black hover:bg-cyan-300 transition">
+              Upgrade
+            </button>
+          </div>
+
+          {/* BUSINESS — PREMIUM HIGHLIGHT */}
+          <div className="relative bg-gradient-to-br from-purple-600/20 to-purple-900/10 border border-purple-400/40 rounded-2xl p-6 shadow-[0_0_55px_-4px_rgba(168,85,247,0.45)] hover:scale-[1.04] backdrop-blur-xl transition duration-300">
+            <div className="absolute -top-3 right-4 bg-purple-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+              Save 48%
             </div>
-          ))}
+
+            <h3 className="text-white font-semibold text-xl flex items-center gap-2">
+              Business
+              <span className="text-xs bg-purple-400/20 text-purple-300 px-2 py-0.5 rounded-lg">
+                Best Value
+              </span>
+            </h3>
+
+            <p className="text-3xl font-bold text-purple-300 mt-2">$15/mo</p>
+            <p className="text-gray-400 text-sm mt-1">
+              Unlimited power. For agencies.
+            </p>
+
+            <ul className="mt-6 space-y-2 text-gray-300 text-sm">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Unlimited
+                sites
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" />{" "}
+                White-label reports
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Team seats
+              </li>
+            </ul>
+
+            <button className="mt-6 w-full py-2 rounded-xl font-medium bg-purple-400 text-black hover:bg-purple-300 transition">
+              Go Business
+            </button>
+          </div>
         </div>
       </motion.div>
     </div>
