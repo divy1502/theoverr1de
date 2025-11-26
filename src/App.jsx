@@ -667,9 +667,30 @@ const Blog = () => (
   </section>
 );
 
-const Newsletter = () => {
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
+const handleSubscribe = async () => {
+  if (!email) return;
+
+  try {
+    const res = await fetch("/api/collect-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+    console.log("Response:", data);
+
+    if (res.ok) {
+      setDone(true);
+    } else {
+      console.error("Backend error", data);
+    }
+  } catch (err) {
+    console.error("Request failed:", err);
+  }
+};
+
+
   return (
     <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
       <h3 className="text-white font-semibold">Get security tips</h3>
@@ -682,7 +703,7 @@ const Newsletter = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <button
-            onClick={() => setDone(true)}
+            onClick={handleSubscribe} // ⬅️ changed from setDone(true)
             className="bg-cyan-400 text-black rounded-xl px-4 py-3"
           >
             Subscribe
