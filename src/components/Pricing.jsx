@@ -80,8 +80,7 @@ const Pricing = () => {
               </button>
             </motion.div>
 
-            {/* PRO (no "Popular" badge) */}
-            {/* PRO (Upgraded with details toggle) */}
+            {/* PRO (Upgraded with detailed breakdown like One-Time Scan) */}
             <motion.div
               whileHover={{ y: -4, scale: 1.03 }}
               transition={{ type: "spring", stiffness: 150, damping: 18 }}
@@ -95,21 +94,45 @@ const Pricing = () => {
 
                 <p className="text-3xl font-bold text-white mt-3">$9/mo</p>
                 <p className="text-gray-400 text-sm mt-1">
-                  For small teams & indie builders.
+                  For small teams & indie devs.
                 </p>
 
                 <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    Scan up to 5 sites
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Scan up to 5 sites
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        Perfect for multiple client or side projects.
+                      </span>
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    Generate PDF reports
+
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Generate PDF reports
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        Clean, professional, client-ready PDF exported
+                        instantly.
+                      </span>
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    Email alerts on critical issues
+
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Email alerts on critical issues
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        Get notified instantly when a new vulnerability appears.
+                      </span>
+                    </span>
                   </li>
                 </ul>
 
@@ -127,31 +150,32 @@ const Pricing = () => {
                       <span className="text-emerald-300 font-medium">
                         • Full Scan Engine:
                       </span>{" "}
-                      Deep header, SSL, DNS & security checks.
+                      Complete SSL, DNS, headers, security-policy checks.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
-                        • PDF Generator:
+                        • Multi-Site Dashboard:
                       </span>{" "}
-                      Clean, client-ready PDF output.
+                      Manage up to 5 sites with history logs.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
-                        • Multi-Site Management:
+                        • Auto PDF Delivery:
                       </span>{" "}
-                      Manage up to 5 domains easily.
+                      Perfect for sending security reports to clients.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
-                        • Alert System:
+                        • Vulnerability Alerts:
                       </span>{" "}
-                      Auto email when a vulnerability is detected.
+                      Automatic emails for high-risk findings.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
-                        • Ideal For:
+                        • Ideal for:
                       </span>{" "}
-                      Freelancers, indie devs, junior security analysts.
+                      Freelancers, indie devs, students building their
+                      portfolio.
                     </p>
                   </div>
                 )}
@@ -162,8 +186,7 @@ const Pricing = () => {
               </button>
             </motion.div>
 
-            {/* BUSINESS */}
-            {/* BUSINESS (Upgraded with advanced details) */}
+            {/* BUSINESS (Upgraded with professional detailed tile) */}
             <motion.div
               whileHover={{ y: -4, scale: 1.04 }}
               transition={{ type: "spring", stiffness: 150, damping: 18 }}
@@ -188,21 +211,44 @@ const Pricing = () => {
                   $15/mo
                 </p>
                 <p className="text-gray-300 text-sm mt-1">
-                  Unlimited scanning. Built for agencies & studios.
+                  Unlimited power. Built for agencies & studios.
                 </p>
 
                 <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    Unlimited sites
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Unlimited sites
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        No limits. Scan every client you manage.
+                      </span>
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    White-label PDF reports
+
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        White-label PDF reports
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        Add your own brand, logo, colors & send to clients.
+                      </span>
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    Team seats & shared dashboards
+
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Team seats & dashboards
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        Collaborate with your team inside shared workspaces.
+                      </span>
+                    </span>
                   </li>
                 </ul>
 
@@ -220,33 +266,33 @@ const Pricing = () => {
                   <div className="mt-4 text-xs text-gray-300 border-t border-white/10 pt-3 space-y-2">
                     <p>
                       <span className="text-purple-300 font-medium">
-                        • Unlimited Scan Engine:
+                        • Agency Mode:
                       </span>{" "}
-                      Enterprise-level deep crawl.
+                      Separate dashboards for each client project.
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
-                        • White-Label Tools:
+                        • White-Label Branding:
                       </span>{" "}
-                      Replace logos, colors & report branding.
+                      Your logo, your colors, your identity.
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
-                        • Team Workspaces:
+                        • Priority Support:
                       </span>{" "}
-                      Shared dashboards for monitoring many clients.
+                      Faster help, priority queue.
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
                         • API Access:
                       </span>{" "}
-                      Automate scans from your own scripts (coming soon).
+                      Automate daily/weekly scans for clients (coming soon).
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
-                        • Ideal For:
+                        • Ideal for:
                       </span>{" "}
-                      Agencies, studios, consultants, cybersecurity teams.
+                      Agencies, consultants, studios, managed service providers.
                     </p>
                   </div>
                 )}
