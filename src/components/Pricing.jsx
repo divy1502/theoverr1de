@@ -136,7 +136,6 @@ const Pricing = () => {
                   </li>
                 </ul>
 
-                {/* Expandable More Details Section */}
                 <button
                   onClick={() => setShowMorePro((v) => !v)}
                   className="mt-4 text-xs text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
@@ -150,32 +149,31 @@ const Pricing = () => {
                       <span className="text-emerald-300 font-medium">
                         • Full Scan Engine:
                       </span>{" "}
-                      Complete SSL, DNS, headers, security-policy checks.
+                      SSL, DNS, headers, policy checks.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
                         • Multi-Site Dashboard:
                       </span>{" "}
-                      Manage up to 5 sites with history logs.
+                      Logs + history.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
-                        • Auto PDF Delivery:
+                        • PDF Delivery:
                       </span>{" "}
-                      Perfect for sending security reports to clients.
+                      Send reports to clients.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
-                        • Vulnerability Alerts:
+                        • Alerts:
                       </span>{" "}
-                      Automatic emails for high-risk findings.
+                      Immediate vulnerability notifications.
                     </p>
                     <p>
                       <span className="text-emerald-300 font-medium">
                         • Ideal for:
                       </span>{" "}
-                      Freelancers, indie devs, students building their
-                      portfolio.
+                      Freelancers, students, indie devs.
                     </p>
                   </div>
                 )}
@@ -222,7 +220,7 @@ const Pricing = () => {
                         Unlimited sites
                       </span>
                       <span className="block text-xs text-gray-400">
-                        No limits. Scan every client you manage.
+                        No limits. Scan every client you handle.
                       </span>
                     </span>
                   </li>
@@ -231,10 +229,10 @@ const Pricing = () => {
                     <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
                     <span>
                       <span className="font-medium text-white">
-                        White-label PDF reports
+                        White-label PDFs
                       </span>
                       <span className="block text-xs text-gray-400">
-                        Add your own brand, logo, colors & send to clients.
+                        Add your logo, colors & branding before sending.
                       </span>
                     </span>
                   </li>
@@ -246,13 +244,12 @@ const Pricing = () => {
                         Team seats & dashboards
                       </span>
                       <span className="block text-xs text-gray-400">
-                        Collaborate with your team inside shared workspaces.
+                        Collaborate with teammates in shared workspaces.
                       </span>
                     </span>
                   </li>
                 </ul>
 
-                {/* Expandable Advanced Features */}
                 <button
                   onClick={() => setShowMoreBiz((v) => !v)}
                   className="mt-4 text-xs text-purple-300 hover:text-purple-200 underline underline-offset-4"
@@ -268,31 +265,31 @@ const Pricing = () => {
                       <span className="text-purple-300 font-medium">
                         • Agency Mode:
                       </span>{" "}
-                      Separate dashboards for each client project.
+                      Separate dashboards per client.
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
-                        • White-Label Branding:
+                        • Branding:
                       </span>{" "}
-                      Your logo, your colors, your identity.
+                      Full white-label control.
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
                         • Priority Support:
                       </span>{" "}
-                      Faster help, priority queue.
+                      Priority ticket queue.
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
                         • API Access:
                       </span>{" "}
-                      Automate daily/weekly scans for clients (coming soon).
+                      Automate daily client scans (coming soon).
                     </p>
                     <p>
                       <span className="text-purple-300 font-medium">
                         • Ideal for:
                       </span>{" "}
-                      Agencies, consultants, studios, managed service providers.
+                      Agencies, studios, MSPs.
                     </p>
                   </div>
                 )}
