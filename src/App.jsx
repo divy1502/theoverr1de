@@ -630,6 +630,9 @@ const Testimonials = () => (
   </section>
 );
 
+/* ------------------------------------------
+   BLOG SECTION
+------------------------------------------- */
 const Blog = () => {
   const [activePost, setActivePost] = useState(null);
 
@@ -659,7 +662,6 @@ const Blog = () => {
             Cybersecurity insights
           </h2>
 
-          {/* Cards */}
           <div className="grid md:grid-cols-3 gap-6 mt-8">
             {posts.map((post) => (
               <article
@@ -678,7 +680,6 @@ const Blog = () => {
             ))}
           </div>
 
-          {/* Expanded article */}
           {activePost && (
             <div className="mt-10 p-6 bg-white/5 border border-white/10 rounded-2xl text-gray-200 max-w-4xl">
               {activePost === "mistakes" && (
@@ -687,22 +688,16 @@ const Blog = () => {
                     Top 5 Security Mistakes Most Websites Make
                   </h3>
                   <p className="mt-3 text-gray-300">
-                    Most small websites don’t get hacked by movie-style hackers.
-                    They get hacked because of simple, boring misconfigurations.
+                    Most small websites don’t get hacked by elite attackers —
+                    they get hacked by simple misconfigurations.
                   </p>
                   <ul className="mt-4 list-disc list-inside space-y-2 text-gray-300 text-sm">
-                    <li>
-                      Missing security headers (HSTS, CSP, X-Frame-Options).
-                    </li>
+                    <li>Missing headers (HSTS, CSP, X-Frame-Options).</li>
                     <li>Weak or expired SSL certificates.</li>
-                    <li>Leaking server version & technology stack.</li>
-                    <li>No regular surface-level scanning or monitoring.</li>
-                    <li>Cookies without Secure / HttpOnly flags.</li>
+                    <li>Server version leaking.</li>
+                    <li>No regular scanning.</li>
+                    <li>Cookies missing Secure / HttpOnly.</li>
                   </ul>
-                  <p className="mt-4 text-gray-400 text-sm">
-                    Overr1de flags these issues in seconds so you can fix them
-                    before attackers even notice you exist.
-                  </p>
                 </>
               )}
 
@@ -711,51 +706,26 @@ const Blog = () => {
                   <h3 className="text-2xl font-semibold text-white">
                     Detect Domain Phishing Before It Hurts Your Brand
                   </h3>
-                  <p className="mt-3 text-gray-300">
-                    Phishing attacks often start with a domain that looks almost
-                    identical to yours.
-                  </p>
                   <ul className="mt-4 list-disc list-inside space-y-2 text-gray-300 text-sm">
-                    <li>Look-alike domains (go0gle.com, paypaI.com, etc.).</li>
-                    <li>
-                      Cheap SSL certs used to make fake sites look “secure”.
-                    </li>
-                    <li>
-                      DNS changes that suddenly redirect traffic elsewhere.
-                    </li>
-                    <li>WHOIS records that copy your brand name or address.</li>
+                    <li>Look-alike domains (go0gle.com).</li>
+                    <li>Fake SSL to appear legitimate.</li>
+                    <li>DNS hijacking signs.</li>
+                    <li>Suspicious WHOIS patterns.</li>
                   </ul>
-                  <p className="mt-4 text-gray-400 text-sm">
-                    Monitoring and early alerts let you react before customers
-                    start receiving fake login or payment pages.
-                  </p>
                 </>
               )}
 
               {activePost === "ssl" && (
                 <>
                   <h3 className="text-2xl font-semibold text-white">
-                    What Really Happens When Your SSL Certificate Expires
+                    What Happens When Your SSL Expires
                   </h3>
-                  <p className="mt-3 text-gray-300">
-                    An expired certificate isn’t just a small warning — it can
-                    stop your business for hours or days.
-                  </p>
                   <ul className="mt-4 list-disc list-inside space-y-2 text-gray-300 text-sm">
-                    <li>Browsers show a full-screen red “Not secure” page.</li>
-                    <li>
-                      APIs, mobile apps, and payment providers stop talking to
-                      you.
-                    </li>
-                    <li>
-                      Search engines drop your ranking because trust is gone.
-                    </li>
-                    <li>Users lose confidence in your brand instantly.</li>
+                    <li>Browser full-screen security warnings.</li>
+                    <li>APIs stop working.</li>
+                    <li>SEO ranking drops.</li>
+                    <li>User trust collapses.</li>
                   </ul>
-                  <p className="mt-4 text-gray-400 text-sm">
-                    Overr1de’s SSL check helps you spot expiry risk before your
-                    customers ever see that warning screen.
-                  </p>
                 </>
               )}
 
@@ -773,37 +743,15 @@ const Blog = () => {
   );
 };
 
-return (
-  <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-    <h3 className="text-white font-semibold">Get security tips</h3>
-    {!done ? (
-      <div className="grid md:grid-cols-[1fr_auto] gap-3 mt-4">
-        <input
-          className="px-4 py-3 bg-[#1F2833] text-white rounded-xl border border-white/10"
-          placeholder="you@company.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button
-          onClick={handleSubscribe} // ⬅️ changed from setDone(true)
-          className="bg-cyan-400 text-black rounded-xl px-4 py-3"
-        >
-          Subscribe
-        </button>
-      </div>
-    ) : (
-      <div className="mt-4 text-emerald-400 flex items-center gap-2 text-sm">
-        <CheckCircle2 className="h-4 w-4" /> You're in!
-      </div>
-    )}
-  </div>
-);
+/* ------------------------------------------
+   NEWSLETTER FIXED VERSION
+------------------------------------------- */
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
   const handleSubscribe = () => {
-    console.log("📩 Email captured:", email);
+    console.log("📩 Email:", email);
     setDone(true);
   };
 
@@ -835,6 +783,9 @@ const Newsletter = () => {
   );
 };
 
+/* ------------------------------------------
+   CONTACT
+------------------------------------------- */
 const Contact = () => (
   <section id="contact" className="border-t border-white/10 py-16">
     <div className="max-w-7xl mx-auto px-6">
@@ -845,8 +796,7 @@ const Contact = () => (
               About & Contact
             </h2>
             <p className="text-gray-300 mt-2 max-w-md">
-              Overr1de helps businesses protect their data through clear
-              reporting.
+              Overr1de helps businesses stay protected with instant insights.
             </p>
             <div className="flex gap-4 text-gray-300 mt-6">
               <a className="hover:text-white flex items-center gap-2">
@@ -860,6 +810,7 @@ const Contact = () => (
               </a>
             </div>
           </div>
+
           <Newsletter />
         </div>
       </motion.div>
@@ -867,6 +818,9 @@ const Contact = () => (
   </section>
 );
 
+/* ------------------------------------------
+   FOOTER
+------------------------------------------- */
 const Footer = () => (
   <footer className="border-t border-white/10 py-8">
     <div className="max-w-7xl mx-auto px-6 text-sm text-gray-400 flex items-center justify-between">
