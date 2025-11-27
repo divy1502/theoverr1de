@@ -14,12 +14,16 @@ import {
   Linkedin,
   Terminal,
   FileText,
+  Zap,
+  Rocket,
+  AlertTriangle,
 } from "lucide-react";
 
 const cn = (...c) => c.filter(Boolean).join(" ");
+
 const fade = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 /* ------------------------------------------
@@ -476,119 +480,318 @@ const Features = () => (
   </section>
 );
 
-const Pricing = () => (
-  <section id="pricing" className="border-t border-white/10 py-20 relative">
-    {/* Background Glow */}
-    <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,255,180,0.08),transparent_70%)]" />
+const Pricing = () => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [showMoreOneTime, setShowMoreOneTime] = useState(false);
 
-    <div className="max-w-7xl mx-auto px-6 relative">
-      <motion.div initial="hidden" whileInView="show" variants={fade}>
-        <h2 className="text-3xl md:text-4xl font-semibold text-white text-center">
-          Choose Your Security Plan
-        </h2>
-        <p className="text-gray-300 text-center mt-2">
-          Simple prices. No hidden fees. Upgrade when you're ready.
-        </p>
+  return (
+    <section
+      id="pricing"
+      className="border-t border-white/10 py-20 relative overflow-hidden"
+    >
+      {/* Background Glow */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(45,255,196,0.09),transparent_70%)]" />
+      <div className="absolute -top-40 -right-40 w-[420px] h-[420px] rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-[420px] h-[420px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
 
-        {/* Pricing Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {/* FREE */}
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:scale-[1.02] transition-all duration-300">
-            <h3 className="text-white font-semibold text-xl">Free</h3>
-            <p className="text-3xl font-bold text-white mt-2">$0</p>
-            <p className="text-gray-400 text-sm mt-1">Perfect for testing</p>
+      <div className="max-w-7xl mx-auto px-6 relative">
+        <motion.div initial="hidden" whileInView="show" variants={fade}>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white text-center">
+            Choose Your Security Plan
+          </h2>
+          <p className="text-gray-300 text-center mt-2 text-sm md:text-base">
+            Simple pricing. No contracts. Scale from testing to full protection.
+          </p>
 
-            <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> 1 scan/day
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> SSL +
-                Header checks
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Email
-                summary
-              </li>
-            </ul>
+          {/* Pricing Grid */}
+          <div className="grid md:grid-cols-4 gap-8 mt-12">
+            {/* FREE */}
+            <motion.div
+              whileHover={{ y: -4, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 150, damping: 18 }}
+              className="bg-gradient-to-b from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col justify-between shadow-[0_0_30px_-16px_rgba(0,0,0,0.8)]"
+            >
+              <div>
+                <div className="flex items-center gap-2">
+                  <Shield className="h-5 w-5 text-emerald-400" />
+                  <h3 className="text-white font-semibold text-xl">Free</h3>
+                </div>
 
-            <button className="mt-6 w-full py-2 rounded-xl font-medium bg-white/10 hover:bg-white/20 text-white">
-              Start Free
-            </button>
+                <p className="text-3xl font-bold text-white mt-3">$0</p>
+                <p className="text-gray-400 text-sm mt-1">
+                  Perfect for testing.
+                </p>
+
+                <ul className="mt-6 space-y-2 text-gray-300 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />1 scan
+                    per day
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    SSL + header checks
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    Basic email summary
+                  </li>
+                </ul>
+              </div>
+
+              <button className="mt-6 w-full py-2 rounded-xl font-medium bg-white/5 hover:bg-white/10 text-white text-sm border border-white/10">
+                Start Free
+              </button>
+            </motion.div>
+
+            {/* PRO (no "Popular" badge) */}
+            <motion.div
+              whileHover={{ y: -4, scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 150, damping: 18 }}
+              className="bg-gradient-to-b from-cyan-500/10 to-cyan-500/0 backdrop-blur-xl border border-cyan-400/50 rounded-2xl p-6 shadow-[0_0_40px_-8px_rgba(34,211,238,0.6)] flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center gap-2">
+                  <Zap className="h-5 w-5 text-cyan-300" />
+                  <h3 className="text-white font-semibold text-xl">Pro</h3>
+                </div>
+
+                <p className="text-3xl font-bold text-white mt-3">$9/mo</p>
+                <p className="text-gray-400 text-sm mt-1">
+                  For small teams and indie devs.
+                </p>
+
+                <ul className="mt-6 space-y-2 text-gray-300 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    Scan up to 5 sites
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    Generate PDF reports
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    Email alerts on critical issues
+                  </li>
+                </ul>
+              </div>
+
+              <button className="mt-6 w-full py-2 rounded-xl font-medium bg-cyan-400 text-black hover:bg-cyan-300 transition text-sm">
+                Upgrade
+              </button>
+            </motion.div>
+
+            {/* BUSINESS */}
+            <motion.div
+              whileHover={{ y: -4, scale: 1.04 }}
+              transition={{ type: "spring", stiffness: 150, damping: 18 }}
+              className="relative bg-gradient-to-br from-purple-600/25 via-purple-900/10 to-fuchsia-500/10 border border-purple-400/50 rounded-2xl p-6 shadow-[0_0_55px_-4px_rgba(168,85,247,0.65)] backdrop-blur-xl flex flex-col justify-between"
+            >
+              <div className="absolute -top-3 right-4 bg-purple-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                Save 48%
+              </div>
+
+              <div>
+                <div className="flex items-center gap-2">
+                  <Rocket className="h-5 w-5 text-purple-300" />
+                  <h3 className="text-white font-semibold text-xl flex items-center gap-2">
+                    Business
+                    <span className="text-xs bg-purple-400/20 text-purple-200 px-2 py-0.5 rounded-lg">
+                      Best Value
+                    </span>
+                  </h3>
+                </div>
+
+                <p className="text-3xl font-bold text-purple-200 mt-3">
+                  $15/mo
+                </p>
+                <p className="text-gray-300 text-sm mt-1">
+                  Unlimited power. Built for agencies & studios.
+                </p>
+
+                <ul className="mt-6 space-y-2 text-gray-200 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    Unlimited sites
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    White-label PDF reports
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    Team seats & shared dashboards
+                  </li>
+                </ul>
+              </div>
+
+              <button className="mt-6 w-full py-2 rounded-xl font-medium bg-purple-400 text-black hover:bg-purple-300 transition text-sm">
+                Go Business
+              </button>
+            </motion.div>
+
+            {/* ONE-TIME PAYMENT OPTIONS */}
+            <motion.div
+              whileHover={{ y: -4, scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 150, damping: 18 }}
+              className="bg-gradient-to-b from-white/8 to-white/0 backdrop-blur-xl border border-white/12 rounded-2xl p-6 shadow-[0_0_35px_-14px_rgba(0,0,0,0.9)] flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-emerald-300" />
+                  <h3 className="text-white font-semibold text-xl">
+                    One-Time Scan
+                  </h3>
+                </div>
+
+                <p className="text-3xl font-bold text-white mt-3">$15–$40</p>
+                <p className="text-gray-400 text-sm mt-1">
+                  Pay once. Get a detailed, client-ready report.
+                </p>
+
+                <ul className="mt-6 space-y-2 text-gray-300 text-sm">
+                  {/* 1. Full PDF Report */}
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Full PDF Website Security Report
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        Deep scan + professional PDF emailed to you.
+                      </span>
+                    </span>
+                  </li>
+
+                  {/* 2. Fix Blueprint */}
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Fix Recommendation Blueprint
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        Priority list of what to fix first, with clear steps.
+                      </span>
+                    </span>
+                  </li>
+
+                  {/* 3. Pre-Launch Check */}
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                    <span>
+                      <span className="font-medium text-white">
+                        Pre-Launch Security Check
+                      </span>
+                      <span className="block text-xs text-gray-400">
+                        One-time audit before your site goes live.
+                      </span>
+                    </span>
+                  </li>
+                </ul>
+
+                <button
+                  onClick={() => setShowMoreOneTime((v) => !v)}
+                  className="mt-4 text-xs text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
+                >
+                  {showMoreOneTime
+                    ? "Hide details"
+                    : "What’s inside each option?"}
+                </button>
+
+                {showMoreOneTime && (
+                  <div className="mt-3 text-xs text-gray-400 space-y-1 border-t border-white/10 pt-3">
+                    <p>
+                      <span className="text-emerald-300 font-medium">
+                        • $15
+                      </span>{" "}
+                      – Single full PDF report.
+                    </p>
+                    <p>
+                      <span className="text-emerald-300 font-medium">
+                        • $25
+                      </span>{" "}
+                      – Report + Fix Blueprint.
+                    </p>
+                    <p>
+                      <span className="text-emerald-300 font-medium">
+                        • $40
+                      </span>{" "}
+                      – Deep audit + pre-launch review.
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <button
+                onClick={() => setSelectedPlan("one-time")}
+                className="mt-6 w-full py-2 rounded-xl font-medium bg-white/10 hover:bg-white/20 text-white text-sm border border-white/15 flex items-center justify-center gap-2"
+              >
+                <Mail className="h-4 w-4" />
+                Get Report
+              </button>
+            </motion.div>
           </div>
+        </motion.div>
+      </div>
 
-          {/* PRO (Middle) */}
-          <div className="bg-white/5 backdrop-blur-xl border border-cyan-400/40 rounded-2xl p-6 shadow-[0_0_40px_-8px_rgba(0,255,255,0.3)] hover:scale-[1.03] transition duration-300">
-            <h3 className="text-white font-semibold text-xl flex items-center gap-2">
-              Pro
-              <span className="text-xs bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-lg">
-                Popular
-              </span>
-            </h3>
-
-            <p className="text-3xl font-bold text-white mt-2">$9/mo</p>
-            <p className="text-gray-400 text-sm mt-1">For small teams</p>
-
-            <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> 5 sites
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> PDF
-                reports
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Email
-                alerts
-              </li>
-            </ul>
-
-            <button className="mt-6 w-full py-2 rounded-xl font-medium bg-cyan-400 text-black hover:bg-cyan-300 transition">
-              Upgrade
-            </button>
-          </div>
-
-          {/* BUSINESS — PREMIUM HIGHLIGHT */}
-          <div className="relative bg-gradient-to-br from-purple-600/20 to-purple-900/10 border border-purple-400/40 rounded-2xl p-6 shadow-[0_0_55px_-4px_rgba(168,85,247,0.45)] hover:scale-[1.04] backdrop-blur-xl transition duration-300">
-            <div className="absolute -top-3 right-4 bg-purple-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-              Save 48%
+      {/* Simple Modal for One-Time Plan */}
+      {selectedPlan === "one-time" && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.96 }}
+            className="w-full max-w-md bg-[#050712] border border-white/15 rounded-2xl p-6 shadow-[0_0_60px_-12px_rgba(34,211,238,0.7)]"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <FileText className="h-5 w-5 text-emerald-300" />
+              <h3 className="text-lg font-semibold text-white">
+                One-Time Security Report
+              </h3>
             </div>
 
-            <h3 className="text-white font-semibold text-xl flex items-center gap-2">
-              Business
-              <span className="text-xs bg-purple-400/20 text-purple-300 px-2 py-0.5 rounded-lg">
-                Best Value
-              </span>
-            </h3>
-
-            <p className="text-3xl font-bold text-purple-300 mt-2">$15/mo</p>
-            <p className="text-gray-400 text-sm mt-1">
-              Unlimited power. For agencies.
+            <p className="text-sm text-gray-300">
+              Choose one of the one-time options at checkout. We&apos;ll run the
+              scan and email you a clean, client-ready PDF with all findings and
+              recommendations.
             </p>
 
-            <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Unlimited
-                sites
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" />{" "}
-                White-label reports
-              </li>
-              <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Team seats
-              </li>
-            </ul>
+            <div className="mt-4 text-xs text-gray-400 space-y-1">
+              <p className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                Full PDF report with risk scores and fixes.
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                Priority fix list so you know what to handle first.
+              </p>
+              <p className="flex items-center gap-2">
+                <AlertTriangle className="h-3 w-3 text-amber-300" />
+                Ideal for audits, client deliverables, and pre-launch checks.
+              </p>
+            </div>
 
-            <button className="mt-6 w-full py-2 rounded-xl font-medium bg-purple-400 text-black hover:bg-purple-300 transition">
-              Go Business
-            </button>
-          </div>
+            <div className="mt-6 flex items-center justify-between gap-3">
+              <button
+                onClick={() => setSelectedPlan(null)}
+                className="px-4 py-2 rounded-xl text-xs font-medium text-gray-300 hover:text-white border border-white/15"
+              >
+                Close
+              </button>
+              <button className="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-400 text-black hover:bg-emerald-300 flex items-center gap-2">
+                Proceed to Checkout
+                <Zap className="h-3 w-3" />
+              </button>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
-    </div>
-  </section>
-);
+      )}
+    </section>
+  );
+};
+
+// export default Pricing;
 
 const Testimonials = () => (
   <section className="border-t border-white/10 py-16">
