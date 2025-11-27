@@ -84,7 +84,7 @@ const Pricing = () => {
             <motion.div
               whileHover={{ y: -4, scale: 1.03 }}
               transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              className="bg-gradient-to-b from-cyan-500/10 to-cyan-500/0 backdrop-blur-xl border border-cyan-400/50 rounded-2xl p-6 shadow-[0_0_40px_-8px_rgba(34,211,238,0.6)] flex flex-col justify-start"
+              className="min-h-[520px] bg-gradient-to-b from-cyan-500/10 to-cyan-500/0 backdrop-blur-xl border border-cyan-400/50 rounded-2xl p-6 shadow-[0_0_40px_-8px_rgba(34,211,238,0.6)] flex flex-col justify-start"
             >
               <div>
                 <div className="flex items-center gap-2">
@@ -190,7 +190,7 @@ const Pricing = () => {
             <motion.div
               whileHover={{ y: -4, scale: 1.04 }}
               transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              className="relative bg-gradient-to-br from-purple-600/25 via-purple-900/10 to-fuchsia-500/10 border border-purple-400/50 rounded-2xl p-6 shadow-[0_0_55px_-4px_rgba(168,85,247,0.65)] backdrop-blur-xl flex flex-col justify-start"
+              className="min-h-[520px] relative bg-gradient-to-br from-purple-600/25 via-purple-900/10 to-fuchsia-500/10 border border-purple-400/50 rounded-2xl p-6 shadow-[0_0_55px_-4px_rgba(168,85,247,0.65)] backdrop-blur-xl flex flex-col justify-start"
             >
               <div className="absolute -top-3 right-4 bg-purple-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                 Save 48%
