@@ -798,6 +798,42 @@ return (
     )}
   </div>
 );
+const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const [done, setDone] = useState(false);
+
+  const handleSubscribe = () => {
+    console.log("📩 Email captured:", email);
+    setDone(true);
+  };
+
+  return (
+    <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+      <h3 className="text-white font-semibold">Get security tips</h3>
+
+      {!done ? (
+        <div className="grid md:grid-cols-[1fr_auto] gap-3 mt-4">
+          <input
+            className="px-4 py-3 bg-[#1F2833] text-white rounded-xl border border-white/10"
+            placeholder="you@company.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button
+            onClick={handleSubscribe}
+            className="bg-cyan-400 text-black rounded-xl px-4 py-3"
+          >
+            Subscribe
+          </button>
+        </div>
+      ) : (
+        <div className="mt-4 text-emerald-400 flex items-center gap-2 text-sm">
+          <CheckCircle2 className="h-4 w-4" /> You're in!
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Contact = () => (
   <section id="contact" className="border-t border-white/10 py-16">
