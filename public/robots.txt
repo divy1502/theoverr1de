@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://theoverr1de.com/sitemap.xml
