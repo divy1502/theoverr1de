@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Overr1de Labs – Website Security Assessment Report</title>
+    <style>
+      :root {
+        --bg-dark: #000000;
+        --bg-panel: #06080d;
+        --bg-panel-alt: #050609;
+        --border-subtle: #1a1f2b;
+        --text-main: #ffffff;
+        --text-muted: #a0a8c0;
+        --accent: #00d0ff;
+        --accent-soft: rgba(0, 208, 255, 0.18);
+        --danger: #ff4b6b;
+        --warning: #ffb547;
+        --success: #4bd37b;
+        --radius-lg: 14px;
+        --radius-sm: 8px;
+        --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.85);
+        --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: radial-gradient(circle at 0 0, #021321 0, #000000 55%);
+        color: var(--text-main);
+        font-family: var(--font-main);
+        font-size: 13px;
+        line-height: 1.6;
+        padding: 32px 40px;
+      }
+
+      .report {
+        max-width: 900px;
+        margin: 0 auto;
+        background: linear-gradient(145deg, #02040a 0%, #05070f 35%, #020308 100%);
+        border-radius: 20px;
+        padding: 32px 36px 40px;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid #121725;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* subtle cyber grid background */
+      .report::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, #0f1725 1px, transparent 0);
+        background-size: 26px 26px;
+        opacity: 0.18;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .report-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* HEADER / COVER */
+      .cover {
+        display: flex;
+        justify-content: space-between;
+        gap: 28px;
+        margin-bottom: 28px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .brand-block {
+        flex: 1.4;
+      }
+
+      .brand-logo {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .brand-chip {
+        font-size: 9px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--accent-soft);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--text-muted);
+      }
+
+      .report-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 10px;
+      }
+
+      .report-subtitle {
+        font-size: 11px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        margin-top: 6px;
+      }
+
+      .meta-block {
+        flex: 1;
+        background: radial-gradient(circle at 0 0, #041929 0, #020309 60%);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--accent-soft);
+        padding: 12px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+      }
+
+      .meta-label {
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .meta-value {
+        font-weight: 500;
+      }
+
+      .badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        border: 1px solid var(--accent-soft);
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        margin-top: 6px;
+      }
+
+      /* SECTION GENERIC */
+      .section {
+        margin-bottom: 24px;
+        padding: 16px 16px 18px;
+        border-radius: var(--radius-lg);
+        background: linear-gradient(
+          135deg,
+          rgba(4, 7, 16, 0.96),
+          rgba(3, 6, 14, 0.98)
+        );
+        border: 1px solid var(--border-subtle);
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+
+      .section-tag {
+        font-size: 10px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .section-body {
+        font-size: 12px;
+        color: var(--text-main);
+      }
+
+      p {
+        margin-bottom: 8px;
+      }
+
+      /* EXEC SUMMARY */
+      .exec-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 16px;
+      }
+
+      .summary-text {
+        font-size: 12px;
+        color: var(--text-main);
+      }
+
+      .key-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .metric-card {
+        background: var(--bg-panel);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-subtle);
+        padding: 8px 10px;
+      }
+
+      .metric-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+
+      .metric-value {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .metric-sub {
+        font-size: 10px;
+        color: var(--text-muted);
+      }
+
+      /* GAUGE */
+      .gauge-card {
+        background: radial-gradient(circle at 0 0, #031628 0, #020309 65%);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--accent-soft);
+        padding: 10px 12px 12px;
+      }
+
+      .gauge-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+
+      .gauge-shell {
+        position: relative;
+        width: 100%;
+        height: 90px;
+        margin: 4px 0 4px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .gauge-arc-bg {
+        position: absolute;
+        width: 140px;
+        height: 70px;
+        border-radius: 140px 140px 0 0;
+        border: 6px solid #121824;
+        border-bottom: none;
+      }
+
+      .gauge-arc-fill {
+        position: absolute;
+        width: 140px;
+        height: 70px;
+        border-radius: 140px 140px 0 0;
+        border: 6px solid var(--accent);
+        border-bottom: none;
+        clip-path: inset(0 calc(100% - ({{riskScore}} * 1% * 140px / 100)) 0 0);
+        /* NOTE:
+           Replace this gauge implementation as needed.
+           You can also draw a proper semi-circle using SVG.
+        */
+        opacity: 0.9;
+      }
+
+      .gauge-score {
+        position: relative;
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 50px;
+      }
+
+      .gauge-caption {
+        margin-top: -4px;
+        font-size: 10px;
+        color: var(--text-muted);
+      }
+
+      /* SEVERITY BAR GRAPH */
+      .severity-graph {
+        margin-top: 6px;
+      }
+
+      .sev-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 5px;
+        font-size: 10px;
+        color: var(--text-muted);
+      }
+
+      .sev-label {
+        width: 52px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .sev-bar-shell {
+        flex: 1;
+        height: 6px;
+        border-radius: 999px;
+        background: #101521;
+        overflow: hidden;
+      }
+
+      .sev-bar-fill-high {
+        height: 100%;
+        background: linear-gradient(90deg, #ff4b6b, #ff7a5c);
+        width: {{severityHighPercent}}%;
+      }
+
+      .sev-bar-fill-med {
+        height: 100%;
+        background: linear-gradient(90deg, #ffb547, #ffd46a);
+        width: {{severityMediumPercent}}%;
+      }
+
+      .sev-bar-fill-low {
+        height: 100%;
+        background: linear-gradient(90deg, #4bd37b, #85e88c);
+        width: {{severityLowPercent}}%;
+      }
+
+      .sev-count {
+        width: 26px;
+        text-align: right;
+        color: var(--text-main);
+        font-size: 10px;
+      }
+
+      /* TECH + PORTS */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 14px;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+        margin-top: 4px;
+      }
+
+      .table th,
+      .table td {
+        padding: 5px 6px;
+        border-bottom: 1px solid #131826;
+      }
+
+      .table th {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        text-align: left;
+      }
+
+      .table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 7px;
+        border-radius: 999px;
+        border: 1px solid #151c2b;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+      }
+
+      .chip-open {
+        border-color: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .chip-closed {
+        border-color: #1e2436;
+        color: #6b758e;
+      }
+
+      /* FINDINGS */
+      .finding {
+        margin-bottom: 10px;
+        padding: 9px 10px 10px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-panel);
+        border: 1px solid #141a2c;
+      }
+
+      .finding-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .finding-title {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .severity-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        border-width: 1px;
+        border-style: solid;
+      }
+
+      .severity-high {
+        border-color: rgba(255, 75, 107, 0.7);
+        color: #ff9aa7;
+      }
+      .severity-medium {
+        border-color: rgba(255, 181, 71, 0.7);
+        color: #ffd9a0;
+      }
+      .severity-low {
+        border-color: rgba(75, 211, 123, 0.7);
+        color: #c4f5d1;
+      }
+
+      .finding-body {
+        font-size: 11px;
+        color: var(--text-main);
+      }
+
+      .finding-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        margin-top: 6px;
+        margin-bottom: 2px;
+      }
+
+      .code-block {
+        font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+        font-size: 10px;
+        background: #050814;
+        border-radius: 6px;
+        border: 1px solid #151b2b;
+        padding: 6px 8px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: #d3ddff;
+      }
+
+      /* SUMMARY TABLE */
+      .severity-summary {
+        margin-top: 6px;
+      }
+
+      .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+        margin-top: 4px;
+      }
+
+      .summary-table th,
+      .summary-table td {
+        padding: 4px 6px;
+        border-bottom: 1px solid #14192a;
+      }
+
+      .summary-table th {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        text-align: left;
+      }
+
+      .summary-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 7px;
+        border-radius: 999px;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .summary-badge-high {
+        background: rgba(255, 75, 107, 0.16);
+        color: #ff9aa7;
+      }
+      .summary-badge-medium {
+        background: rgba(255, 181, 71, 0.12);
+        color: #ffd9a0;
+      }
+      .summary-badge-low {
+        background: rgba(75, 211, 123, 0.12);
+        color: #c4f5d1;
+      }
+
+      /* ROADMAP */
+      .roadmap-list {
+        list-style: none;
+        margin-top: 4px;
+      }
+
+      .roadmap-item {
+        display: flex;
+        gap: 10px;
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+
+      .roadmap-phase {
+        min-width: 65px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+      }
+
+      .roadmap-bar-shell {
+        flex: 1;
+        height: 6px;
+        border-radius: 999px;
+        background: #0d1320;
+        overflow: hidden;
+        margin-top: 5px;
+      }
+
+      .roadmap-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), #61efff);
+        width: {{roadmapWidth}}%;
+      }
+
+      /* FOOTER / CONCLUSION */
+      .footer {
+        margin-top: 16px;
+        font-size: 10px;
+        color: var(--text-muted);
+        border-top: 1px solid #14192b;
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .footer-left {
+        max-width: 60%;
+      }
+
+      .footer-right {
+        text-align: right;
+      }
+
+      .small-strong {
+        font-weight: 500;
+        color: var(--text-main);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="report">
+      <div class="report-inner">
+        <!-- COVER / HEADER -->
+        <section class="cover">
+          <div class="brand-block">
+            <div class="brand-logo">
+              OVERR1DE
+              <span class="brand-chip">Cyber Risk Intelligence</span>
+            </div>
+            <div class="report-title">Website Security Assessment Report</div>
+            <div class="report-subtitle">
+              Automated Surface Scan · AI-Assisted Analysis
+            </div>
+            <div class="badge-pill">DOMAIN · {{clientDomain}}</div>
+          </div>
+
+          <div class="meta-block">
+            <div class="meta-row">
+              <span class="meta-label">Date</span>
+              <span class="meta-value">{{reportDate}}</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Report ID</span>
+              <span class="meta-value">{{reportId}}</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Scan Profile</span>
+              <span class="meta-value">{{scanProfile}}</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Prepared For</span>
+              <span class="meta-value">{{clientName}}</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXEC SUMMARY -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Executive Summary</div>
+            <div class="section-tag">High-Level Risk Overview</div>
+          </div>
+
+          <div class="section-body exec-grid">
+            <div>
+              <div class="summary-text">
+                {{execSummaryText}}
+                <!-- Example:
+              "The assessed domain shows a moderate exposure to common web risks.
+              No critical remote-code execution vulnerabilities were identified,
+              but several misconfigurations and missing security controls increase
+              the attack surface. Prioritizing high-severity items is recommended
+              within the next 7–14 days."
+              --></div>
+
+              <div class="key-metrics">
+                <div class="metric-card">
+                  <div class="metric-label">Total Findings</div>
+                  <div class="metric-value">{{totalFindings}}</div>
+                  <div class="metric-sub">
+                    {{highCount}} High · {{mediumCount}} Medium · {{lowCount}}
+                    Low
+                  </div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Secure Surface</div>
+                  <div class="metric-value">{{securePercent}}%</div>
+                  <div class="metric-sub">
+                    Endpoints without observed issues
+                  </div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">SSL/TLS Health</div>
+                  <div class="metric-value">{{tlsGrade}}</div>
+                  <div class="metric-sub">Certificate & protocol posture</div>
+                </div>
+
+                <div class="metric-card">
+                  <div class="metric-label">Technology Risk Level</div>
+                  <div class="metric-value">{{techRiskLabel}}</div>
+                  <div class="metric-sub">Based on versions & exposure</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="gauge-card">
+                <div class="gauge-label">Overall Risk Score (0–100)</div>
+                <div class="gauge-shell">
+                  <div class="gauge-arc-bg"></div>
+                  <div class="gauge-arc-fill"></div>
+                  <div class="gauge-score">{{riskScore}}</div>
+                </div>
+                <div class="gauge-caption">
+                  {{riskTierLabel}} · Lower scores indicate a more secure
+                  posture.
+                </div>
+
+                <div class="severity-graph">
+                  <div class="sev-row">
+                    <span class="sev-label">High</span>
+                    <div class="sev-bar-shell">
+                      <div class="sev-bar-fill-high"></div>
+                    </div>
+                    <span class="sev-count">{{highCount}}</span>
+                  </div>
+                  <div class="sev-row">
+                    <span class="sev-label">Medium</span>
+                    <div class="sev-bar-shell">
+                      <div class="sev-bar-fill-med"></div>
+                    </div>
+                    <span class="sev-count">{{mediumCount}}</span>
+                  </div>
+                  <div class="sev-row">
+                    <span class="sev-label">Low</span>
+                    <div class="sev-bar-shell">
+                      <div class="sev-bar-fill-low"></div>
+                    </div>
+                    <span class="sev-count">{{lowCount}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TECH + PORTS -->
+        <section class="section">
+          <div class="section-header two-col">
+            <div>
+              <div class="section-title">Technical Overview</div>
+              <div class="section-tag">Stack & Exposure Snapshot</div>
+            </div>
+          </div>
+
+          <div class="section-body two-col">
+            <div>
+              <p class="metric-label" style="margin-bottom: 4px">
+                Detected Technology Stack
+              </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Component</th>
+                    <th>Version</th>
+                    <th>Risk</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each techStack}}
+                  <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.version}}</td>
+                    <td>{{this.riskLabel}}</td>
+                  </tr>
+                  {{/each}}
+                  <!-- Example object:
+                  { "name":"Nginx", "version":"1.18.0", "riskLabel":"Outdated (1 CVE)" }
+                --></tbody>
+              </table>
+            </div>
+
+            <div>
+              <p class="metric-label" style="margin-bottom: 4px">
+                Port Exposure
+              </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Port</th>
+                    <th>Service</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each openPorts}}
+                  <tr>
+                    <td>{{this.port}}</td>
+                    <td>{{this.service}}</td>
+                    <td>
+                      {{#if this.isOpen}}
+                      <span class="chip chip-open">Open</span>
+                      {{else}}
+                      <span class="chip chip-closed">Closed</span>
+                      {{/if}}
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- FINDINGS DETAIL -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Key Findings</div>
+            <div class="section-tag">Issue Breakdown & Remediation</div>
+          </div>
+
+          <div class="section-body">
+            {{#each findings}}
+            <div class="finding">
+              <div class="finding-header">
+                <div class="finding-title">{{this.title}}</div>
+                <div>
+                  {{#if (eq this.severity "HIGH")}}
+                  <span class="severity-badge severity-high">High</span>
+                  {{/if}} {{#if (eq this.severity "MEDIUM")}}
+                  <span class="severity-badge severity-medium">Medium</span>
+                  {{/if}} {{#if (eq this.severity "LOW")}}
+                  <span class="severity-badge severity-low">Low</span>
+                  {{/if}}
+                </div>
+              </div>
+
+              <div class="finding-body">
+                <div class="finding-label">Description</div>
+                <p>{{this.description}}</p>
+
+                <div class="finding-label">Why It Matters</div>
+                <p>{{this.impact}}</p>
+
+                <div class="finding-label">Evidence</div>
+                <div class="code-block">{{this.evidence}}</div>
+
+                <div class="finding-label">Recommended Fix</div>
+                <p>{{this.recommendation}}</p>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </section>
+
+        <!-- SUMMARY TABLE -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Severity Summary</div>
+            <div class="section-tag">Risk Distribution</div>
+          </div>
+
+          <div class="section-body severity-summary">
+            <table class="summary-table">
+              <thead>
+                <tr>
+                  <th>Severity</th>
+                  <th>Count</th>
+                  <th>% of Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="summary-badge summary-badge-high">High</span>
+                  </td>
+                  <td>{{highCount}}</td>
+                  <td>{{severityHighPercent}}%</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="summary-badge summary-badge-medium"
+                      >Medium</span
+                    >
+                  </td>
+                  <td>{{mediumCount}}</td>
+                  <td>{{severityMediumPercent}}%</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="summary-badge summary-badge-low">Low</span>
+                  </td>
+                  <td>{{lowCount}}</td>
+                  <td>{{severityLowPercent}}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ROADMAP -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Remediation Roadmap</div>
+            <div class="section-tag">Suggested 30-Day Plan</div>
+          </div>
+
+          <div class="section-body">
+            <p>{{roadmapIntroText}}</p>
+
+            <ul class="roadmap-list">
+              {{#each roadmap}}
+              <li class="roadmap-item">
+                <div class="roadmap-phase">{{this.phaseLabel}}</div>
+                <div style="flex: 1">
+                  <div>{{this.description}}</div>
+                  <div class="roadmap-bar-shell">
+                    <div
+                      class="roadmap-bar-fill"
+                      style="width: {{this.weightPercent}}%;"
+                    ></div>
+                  </div>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+        </section>
+
+        <!-- CONCLUSION / FOOTER -->
+        <section class="section">
+          <div class="section-header">
+            <div class="section-title">Conclusion</div>
+            <div class="section-tag">Posture Assessment</div>
+          </div>
+          <div class="section-body">
+            <p>{{conclusionText}}</p>
+            <!-- Example:
+          "Addressing the identified high and medium-severity issues will
+          significantly reduce the probability of successful attacks against
+          your external web surface. Overr1de Labs recommends re-running this
+          scan after remediation to validate the improved security posture."
+          --></div>
+        </section>
+
+        <footer class="footer">
+          <div class="footer-left">
+            <div class="small-strong">
+              Overr1de Labs · Automated Cyber Risk Reports
+            </div>
+            <div>Generated for {{clientName}} · {{clientDomain}}</div>
+          </div>
+          <div class="footer-right">
+            <div>Report ID: {{reportId}}</div>
+            <div>Contact: {{contactEmail}}</div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

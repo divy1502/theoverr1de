@@ -1,0 +1,17 @@
+{
+  "name": "overr1de-backend",
+  "version": "1.0.0",
+  "description": "Overr1de backend - PDF report generator",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "handlebars": "^4.7.8",
+    "pdfkit": "^0.17.2",
+    "puppeteer": "^24.33.0"
+  }
+}

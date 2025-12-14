@@ -36,3 +36,9 @@ Thumbs.db
 # =====================
 logs/
 *.log
+
+# =====================
+# Generated reports 
+# =====================
+*.pretty.json
+*.pdf
