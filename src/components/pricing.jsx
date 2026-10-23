@@ -24,434 +24,307 @@ const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="border-t border-white/10 py-20 relative overflow-hidden"
+      className="border-t border-hacker-green/20 py-24 relative overflow-hidden bg-hacker-900"
     >
       {/* Background Glow */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(45,255,196,0.09),transparent_70%)]" />
-      <div className="absolute -top-40 -right-40 w-[420px] h-[420px] rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-[420px] h-[420px] rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,255,102,0.05),transparent_70%)]" />
+      <div className="absolute -top-40 -right-40 w-[420px] h-[420px] rounded-full bg-hacker-cyan/5 blur-[120px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute -bottom-40 -left-40 w-[420px] h-[420px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none animate-pulse-glow" />
 
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div initial="hidden" whileInView="show" variants={fade}>
-          <h2 className="text-3xl md:text-4xl font-semibold text-white text-center">
-            Choose Your Security Plan
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-white uppercase text-center flex items-center justify-center gap-3">
+            <Zap className="w-8 h-8 text-hacker-green" /> 
+            ACCESS TIERS
           </h2>
-          <p className="text-gray-300 text-center mt-2 text-sm md:text-base">
-            Simple pricing. No contracts. Scale from testing to full protection.
+          <p className="text-gray-400 font-mono text-center mt-4 text-sm md:text-base">
+            SELECT CLEARANCE LEVEL. NO CONTRACTS. SCALE INFRASTRUCTURE.
           </p>
 
           {/* Pricing Grid */}
-          <div className="grid md:grid-cols-4 gap-8 mt-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {/* FREE */}
             <motion.div
-              whileHover={{ y: -4, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              className="bg-gradient-to-b from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col justify-between shadow-[0_0_30px_-16px_rgba(0,0,0,0.8)]"
+              whileHover={{ y: -5, boxShadow: "0 0 20px rgba(0,255,102,0.2)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="bg-hacker-800/80 backdrop-blur-md border border-white/10 hover:border-hacker-green/50 rounded-sm p-6 flex flex-col justify-between transition-colors relative"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-white/20" />
               <div>
                 <div className="flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-emerald-400" />
-                  <h3 className="text-white font-semibold text-xl">Free</h3>
+                  <Shield className="h-5 w-5 text-gray-400" />
+                  <h3 className="text-white font-display font-bold text-xl uppercase">Guest</h3>
                 </div>
 
-                <p className="text-3xl font-bold text-white mt-3">$0</p>
-                <p className="text-gray-400 text-sm mt-1">
-                  Perfect for testing.
+                <p className="text-4xl font-display font-bold text-white mt-4">$0</p>
+                <p className="text-gray-500 font-mono text-xs mt-2 border-b border-white/10 pb-4">
+                  Perfect for basic diagnostics.
                 </p>
 
-                <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />1 scan
-                    per day
+                <ul className="mt-4 space-y-3 text-gray-300 font-mono text-xs">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-gray-500" /> 1 scan per day
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    SSL + header checks
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-gray-500" /> SSL + header checks
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                    Basic email summary
+                  <li className="flex items-center gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-gray-500" /> Basic email summary
                   </li>
                 </ul>
               </div>
 
-              <button className="mt-6 w-full py-2 rounded-xl font-medium bg-white/5 hover:bg-white/10 text-white text-sm border border-white/10">
-                Start Free
+              <button className="mt-8 w-full py-3 rounded-sm font-mono font-bold bg-white/5 hover:bg-white/10 text-white text-sm border border-white/10 transition-colors uppercase">
+                Initialize Free
               </button>
             </motion.div>
 
-            {/* PRO (Upgraded with detailed breakdown like One-Time Scan) */}
+            {/* PRO */}
             <motion.div
-              whileHover={{ y: -4, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              className="min-h-[520px] bg-gradient-to-b from-cyan-500/10 to-cyan-500/0 backdrop-blur-xl border border-cyan-400/50 rounded-2xl p-6 shadow-[0_0_40px_-8px_rgba(34,211,238,0.6)] flex flex-col justify-start"
+              whileHover={{ y: -5, boxShadow: "0 0 30px rgba(0,229,255,0.3)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="min-h-[520px] bg-hacker-800/80 backdrop-blur-md border border-hacker-cyan/30 rounded-sm p-6 flex flex-col justify-start relative shadow-[0_0_20px_rgba(0,229,255,0.1)] group overflow-hidden"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-hacker-cyan opacity-80 group-hover:shadow-[0_0_15px_rgba(0,229,255,1)] transition-shadow" />
+              
               <div>
                 <div className="flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-cyan-300" />
-                  <h3 className="text-white font-semibold text-xl">Pro</h3>
+                  <Zap className="h-5 w-5 text-hacker-cyan" />
+                  <h3 className="text-white font-display font-bold text-xl uppercase">Pro</h3>
                 </div>
 
-                <p className="text-3xl font-bold text-white mt-3">$9/mo</p>
-                <p className="text-gray-400 text-sm mt-1">
-                  For small teams & indie devs.
+                <p className="text-4xl font-display font-bold text-hacker-cyan mt-4">$9<span className="text-lg text-gray-500">/mo</span></p>
+                <p className="text-gray-400 font-mono text-xs mt-2 border-b border-hacker-cyan/20 pb-4">
+                  For small teams & indie ops.
                 </p>
 
-                <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                <ul className="mt-4 space-y-3 text-gray-300 font-mono text-xs">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-hacker-cyan mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Scan up to 5 sites
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        Perfect for multiple client or side projects.
-                      </span>
+                      <span className="font-bold text-white block mb-1">Scan up to 5 sites</span>
+                      <span className="text-gray-500">Perfect for multi-client tracking.</span>
                     </span>
                   </li>
-
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-hacker-cyan mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Generate PDF reports
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        Clean, professional, client-ready PDF exported
-                        instantly.
-                      </span>
+                      <span className="font-bold text-white block mb-1">PDF Reports</span>
+                      <span className="text-gray-500">Client-ready diagnostics exported instantly.</span>
                     </span>
                   </li>
-
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-hacker-cyan mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Email alerts on critical issues
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        Get notified instantly when a new vulnerability appears.
-                      </span>
+                      <span className="font-bold text-white block mb-1">Alert Systems</span>
+                      <span className="text-gray-500">Instant notification on vulnerability spikes.</span>
                     </span>
                   </li>
                 </ul>
 
                 <button
                   onClick={() => setShowMorePro((v) => !v)}
-                  className="mt-4 text-xs text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
+                  className="mt-4 text-[10px] font-mono text-hacker-cyan hover:text-white transition-colors"
                 >
-                  {showMorePro ? "Hide details" : "What’s inside Pro?"}
+                  {showMorePro ? "[-] COLLAPSE_DATA" : "[+] EXPAND_DATA"}
                 </button>
 
                 {showMorePro && (
-                  <div className="mt-4 text-xs text-gray-400 border-t border-white/10 pt-3 space-y-2">
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • Full Scan Engine:
-                      </span>{" "}
-                      SSL, DNS, headers, policy checks.
-                    </p>
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • Multi-Site Dashboard:
-                      </span>{" "}
-                      Logs + history.
-                    </p>
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • PDF Delivery:
-                      </span>{" "}
-                      Send reports to clients.
-                    </p>
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • Alerts:
-                      </span>{" "}
-                      Immediate vulnerability notifications.
-                    </p>
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • Ideal for:
-                      </span>{" "}
-                      Freelancers, students, indie devs.
-                    </p>
+                  <div className="mt-4 text-[11px] font-mono text-gray-400 border-l border-hacker-cyan/30 pl-3 space-y-2">
+                    <p><span className="text-white">API Engine:</span> SSL, DNS, policy checks.</p>
+                    <p><span className="text-white">Dashboard:</span> Centralized logging.</p>
+                    <p><span className="text-white">Alerts:</span> Critical path notifications.</p>
                   </div>
                 )}
               </div>
 
-              <button className="mt-6 w-full py-2 rounded-xl font-medium bg-cyan-400 text-black hover:bg-cyan-300 transition text-sm">
-                Upgrade
+              <button className="mt-auto w-full py-3 rounded-sm font-mono font-bold bg-hacker-cyan text-black hover:bg-hacker-cyan/80 transition shadow-[0_0_15px_rgba(0,229,255,0.3)] uppercase">
+                Authorize Overr1de
               </button>
             </motion.div>
 
-            {/* BUSINESS (Upgraded with professional detailed tile) */}
+            {/* BUSINESS */}
             <motion.div
-              whileHover={{ y: -4, scale: 1.04 }}
-              transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              className="min-h-[520px] relative bg-gradient-to-br from-purple-600/25 via-purple-900/10 to-fuchsia-500/10 border border-purple-400/50 rounded-2xl p-6 shadow-[0_0_55px_-4px_rgba(168,85,247,0.65)] backdrop-blur-xl flex flex-col justify-start"
+              whileHover={{ y: -5, boxShadow: "0 0 35px rgba(178,0,255,0.4)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="min-h-[520px] bg-hacker-800/80 backdrop-blur-md border border-purple-500/50 rounded-sm p-6 flex flex-col justify-start relative shadow-[0_0_25px_rgba(178,0,255,0.15)] group overflow-hidden"
             >
-              <div className="absolute -top-3 right-4 bg-purple-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                Save 48%
+              <div className="absolute top-0 left-0 w-full h-1 bg-purple-500 opacity-90 group-hover:shadow-[0_0_20px_rgba(178,0,255,1)] transition-shadow animate-pulse-glow" />
+              <div className="absolute top-4 right-4 bg-purple-500 text-black font-mono text-[9px] font-bold px-2 py-1 rounded-sm shadow-[0_0_10px_rgba(178,0,255,0.5)]">
+                BEST_VALUE
               </div>
 
               <div>
                 <div className="flex items-center gap-2">
-                  <Rocket className="h-5 w-5 text-purple-300" />
-                  <h3 className="text-white font-semibold text-xl flex items-center gap-2">
-                    Business
-                    <span className="text-xs bg-purple-400/20 text-purple-200 px-2 py-0.5 rounded-lg">
-                      Best Value
-                    </span>
-                  </h3>
+                  <Rocket className="h-5 w-5 text-purple-400" />
+                  <h3 className="text-white font-display font-bold text-xl uppercase">Enterprise</h3>
                 </div>
 
-                <p className="text-3xl font-bold text-purple-200 mt-3">
-                  $15/mo
-                </p>
-                <p className="text-gray-300 text-sm mt-1">
-                  Unlimited power. Built for agencies & studios.
+                <p className="text-4xl font-display font-bold text-purple-400 mt-4">$15<span className="text-lg text-gray-500">/mo</span></p>
+                <p className="text-gray-400 font-mono text-xs mt-2 border-b border-purple-500/20 pb-4">
+                  Unlimited power. Built for agencies.
                 </p>
 
-                <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                <ul className="mt-4 space-y-3 text-gray-300 font-mono text-xs">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Unlimited sites
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        No limits. Scan every client you handle.
-                      </span>
+                      <span className="font-bold text-white block mb-1">Unlimited Sites</span>
+                      <span className="text-gray-500">Scan every node you manage.</span>
                     </span>
                   </li>
-
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        White-label PDFs
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        Add your logo, colors & branding before sending.
-                      </span>
+                      <span className="font-bold text-white block mb-1">White-label Output</span>
+                      <span className="text-gray-500">Rebrand reports with your insignia.</span>
                     </span>
                   </li>
-
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Team seats & dashboards
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        Collaborate with teammates in shared workspaces.
-                      </span>
+                      <span className="font-bold text-white block mb-1">Team Commands</span>
+                      <span className="text-gray-500">Multi-user access and shared logs.</span>
                     </span>
                   </li>
                 </ul>
 
                 <button
                   onClick={() => setShowMoreBiz((v) => !v)}
-                  className="mt-4 text-xs text-purple-300 hover:text-purple-200 underline underline-offset-4"
+                  className="mt-4 text-[10px] font-mono text-purple-400 hover:text-white transition-colors"
                 >
-                  {showMoreBiz
-                    ? "Hide advanced features"
-                    : "Show advanced features"}
+                  {showMoreBiz ? "[-] COLLAPSE_DATA" : "[+] EXPAND_DATA"}
                 </button>
 
                 {showMoreBiz && (
-                  <div className="mt-4 text-xs text-gray-300 border-t border-white/10 pt-3 space-y-2">
-                    <p>
-                      <span className="text-purple-300 font-medium">
-                        • Agency Mode:
-                      </span>{" "}
-                      Separate dashboards per client.
-                    </p>
-                    <p>
-                      <span className="text-purple-300 font-medium">
-                        • Branding:
-                      </span>{" "}
-                      Full white-label control.
-                    </p>
-                    <p>
-                      <span className="text-purple-300 font-medium">
-                        • Priority Support:
-                      </span>{" "}
-                      Priority ticket queue.
-                    </p>
-                    <p>
-                      <span className="text-purple-300 font-medium">
-                        • API Access:
-                      </span>{" "}
-                      Automate daily client scans (coming soon).
-                    </p>
-                    <p>
-                      <span className="text-purple-300 font-medium">
-                        • Ideal for:
-                      </span>{" "}
-                      Agencies, studios, MSPs.
-                    </p>
+                  <div className="mt-4 text-[11px] font-mono text-gray-400 border-l border-purple-500/30 pl-3 space-y-2">
+                    <p><span className="text-white">Agency Mode:</span> Sub-command nodes.</p>
+                    <p><span className="text-white">API Access:</span> Core root access.</p>
+                    <p><span className="text-white">Priority:</span> Level 1 support queue.</p>
                   </div>
                 )}
               </div>
 
-              <button className="mt-6 w-full py-2 rounded-xl font-medium bg-purple-400 text-black hover:bg-purple-300 transition text-sm">
-                Go Business
+              <button className="mt-auto w-full py-3 rounded-sm font-mono font-bold bg-purple-500 text-black hover:bg-purple-400 transition shadow-[0_0_15px_rgba(178,0,255,0.4)] uppercase">
+                Acquire Node
               </button>
             </motion.div>
 
-            {/* ONE-TIME PAYMENT OPTIONS */}
+            {/* ONE-TIME */}
             <motion.div
-              whileHover={{ y: -4, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              className="bg-gradient-to-b from-white/8 to-white/0 backdrop-blur-xl border border-white/12 rounded-2xl p-6 shadow-[0_0_35px_-14px_rgba(0,0,0,0.9)] flex flex-col justify-buisness"
+              whileHover={{ y: -5, boxShadow: "0 0 25px rgba(0,255,102,0.3)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="bg-hacker-800/80 backdrop-blur-md border border-hacker-green/40 hover:border-hacker-green/70 rounded-sm p-6 shadow-[0_0_15px_rgba(0,255,102,0.05)] flex flex-col justify-between group overflow-hidden relative transition-colors"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-hacker-green opacity-60 group-hover:shadow-[0_0_15px_rgba(0,255,102,1)] transition-shadow" />
               <div>
                 <div className="flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-emerald-300" />
-                  <h3 className="text-white font-semibold text-xl">
-                    One-Time Scan
-                  </h3>
+                  <FileText className="h-5 w-5 text-hacker-green" />
+                  <h3 className="text-white font-display font-bold text-xl uppercase">Single Hit</h3>
                 </div>
 
-                <p className="text-3xl font-bold text-white mt-3">$15–$40</p>
-                <p className="text-gray-400 text-sm mt-1">
-                  Pay once. Get a detailed, client-ready report.
+                <p className="text-4xl font-display font-bold text-hacker-green mt-4">$15<span className="text-base text-gray-400"><span className="mx-1 font-mono">-</span>$40</span></p>
+                <p className="text-gray-400 font-mono text-xs mt-2 border-b border-hacker-green/20 pb-4">
+                  Pay once. Extract deep intel.
                 </p>
 
-                <ul className="mt-6 space-y-2 text-gray-300 text-sm">
-                  {/* 1. Full PDF Report */}
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                <ul className="mt-4 space-y-3 text-gray-300 font-mono text-xs">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-hacker-green mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Full PDF Website Security Report
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        Deep scan + professional PDF emailed to you.
-                      </span>
+                      <span className="font-bold text-white block mb-1">Comprehensive PDF</span>
+                      <span className="text-gray-500">Deep scan + emailed directly.</span>
                     </span>
                   </li>
-
-                  {/* 2. Fix Blueprint */}
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-hacker-green mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Fix Recommendation Blueprint
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        Priority list of what to fix first, with clear steps.
-                      </span>
+                      <span className="font-bold text-white block mb-1">Patch Blueprint</span>
+                      <span className="text-gray-500">Priority list to close vulnerabilities.</span>
                     </span>
                   </li>
-
-                  {/* 3. Pre-Launch Check */}
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400 mt-0.5" />
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-hacker-green mt-0.5" />
                     <span>
-                      <span className="font-medium text-white">
-                        Pre-Launch Security Check
-                      </span>
-                      <span className="block text-xs text-gray-400">
-                        One-time audit before your site goes live.
-                      </span>
+                      <span className="font-bold text-white block mb-1">Zero Deployment Risk</span>
+                      <span className="text-gray-500">Pre-launch security audit check.</span>
                     </span>
                   </li>
                 </ul>
 
                 <button
                   onClick={() => setShowMoreOneTime((v) => !v)}
-                  className="mt-4 text-xs text-cyan-300 hover:text-cyan-200 underline underline-offset-4"
+                  className="mt-4 text-[10px] font-mono text-hacker-green hover:text-white transition-colors"
                 >
-                  {showMoreOneTime
-                    ? "Hide details"
-                    : "What’s inside each option?"}
+                  {showMoreOneTime ? "[-] COLLAPSE_DATA" : "[+] EXPAND_DATA"}
                 </button>
 
                 {showMoreOneTime && (
-                  <div className="mt-3 text-xs text-gray-400 space-y-1 border-t border-white/10 pt-3">
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • $15
-                      </span>{" "}
-                      – Single full PDF report.
-                    </p>
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • $25
-                      </span>{" "}
-                      – Report + Fix Blueprint.
-                    </p>
-                    <p>
-                      <span className="text-emerald-300 font-medium">
-                        • $40
-                      </span>{" "}
-                      – Deep audit + pre-launch review.
-                    </p>
+                  <div className="mt-4 text-[11px] font-mono text-gray-400 space-y-2 border-l border-hacker-green/30 pl-3">
+                    <p><span className="text-white">$15</span> – Master PDF report.</p>
+                    <p><span className="text-white">$25</span> – Report + Fix Blueprint.</p>
+                    <p><span className="text-white">$40</span> – Deep audit review.</p>
                   </div>
                 )}
               </div>
 
               <button
                 onClick={() => setSelectedPlan("one-time")}
-                className="mt-6 w-full py-2 rounded-xl font-medium bg-white/10 hover:bg-white/20 text-white text-sm border border-white/15 flex items-center justify-center gap-2"
+                className="mt-8 w-full py-3 rounded-sm font-mono font-bold bg-[#050b14] hover:bg-hacker-green/10 text-hacker-green text-sm border border-hacker-green/50 flex items-center justify-center gap-2 transition-colors uppercase hover:shadow-[0_0_15px_rgba(0,255,102,0.2)]"
               >
-                <Mail className="h-4 w-4" />
-                Get Report
+                <Mail className="h-4 w-4" /> Extract Intel
               </button>
             </motion.div>
           </div>
         </motion.div>
       </div>
 
-      {/* Simple Modal for One-Time Plan */}
+      {/* Modal - One-Time Plan */}
       {selectedPlan === "one-time" && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050b14]/90 backdrop-blur-md px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.96 }}
-            className="w-full max-w-md bg-[#050712] border border-white/15 rounded-2xl p-6 shadow-[0_0_60px_-12px_rgba(34,211,238,0.7)]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="w-full max-w-md bg-hacker-800 border-2 border-hacker-green rounded-sm p-6 shadow-[0_0_50px_rgba(0,255,102,0.2)] relative overflow-hidden"
           >
-            <div className="flex items-center gap-2 mb-3">
-              <FileText className="h-5 w-5 text-emerald-300" />
-              <h3 className="text-lg font-semibold text-white">
-                One-Time Security Report
+            <div className="absolute top-0 left-0 w-full h-1 bg-hacker-green animate-pulse" />
+            
+            <div className="flex items-center gap-3 mb-4 border-b border-hacker-green/20 pb-4">
+              <FileText className="h-6 w-6 text-hacker-green" />
+              <h3 className="text-xl font-display font-bold text-white uppercase">
+                Extraction Protocol
               </h3>
             </div>
 
-            <p className="text-sm text-gray-300">
-              Choose one of the one-time options at checkout. We&apos;ll run the
-              scan and email you a clean, client-ready PDF with all findings and
-              recommendations.
+            <p className="text-xs font-mono text-gray-400 leading-relaxed">
+              Select one-time payload at checkout. System will execute full scan protocol and transmit clean, client-ready PDF directly to your comms panel.
             </p>
 
-            <div className="mt-4 text-xs text-gray-400 space-y-1">
-              <p className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                Full PDF report with risk scores and fixes.
+            <div className="mt-5 text-xs text-gray-300 font-mono space-y-3 bg-[#050b14] p-4 border border-hacker-green/10 rounded-sm">
+              <p className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 mt-1 rounded-full bg-hacker-green shadow-[0_0_5px_rgba(0,255,102,0.8)]" />
+                <span>Full diagnostic report with risk mapping.</span>
               </p>
-              <p className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                Priority fix list so you know what to handle first.
+              <p className="flex items-start gap-3">
+                <span className="w-1.5 h-1.5 mt-1 rounded-full bg-hacker-cyan shadow-[0_0_5px_rgba(0,229,255,0.8)]" />
+                <span>Priority node repair list.</span>
               </p>
-              <p className="flex items-center gap-2">
-                <AlertTriangle className="h-3 w-3 text-amber-300" />
-                Ideal for audits, client deliverables, and pre-launch checks.
+              <p className="flex items-start gap-3">
+                <AlertTriangle className="h-3 w-3 text-amber-400 mt-0.5" />
+                <span className="text-amber-400/80">Ideal for client deliverables / pre-launch.</span>
               </p>
             </div>
 
-            <div className="mt-6 flex items-center justify-between gap-3">
+            <div className="mt-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
               <button
                 onClick={() => setSelectedPlan(null)}
-                className="px-4 py-2 rounded-xl text-xs font-medium text-gray-300 hover:text-white border border-white/15"
+                className="w-full sm:w-auto px-6 py-3 rounded-sm font-mono text-xs font-bold text-gray-400 hover:text-white border border-gray-600 hover:bg-gray-800 transition-colors uppercase"
               >
-                Close
+                Abort
               </button>
-              <button className="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-400 text-black hover:bg-emerald-300 flex items-center gap-2">
-                Proceed to Checkout
-                <Zap className="h-3 w-3" />
+              <button className="w-full sm:w-auto px-6 py-3 rounded-sm font-mono text-xs font-bold bg-hacker-green text-black hover:bg-[#00e65c] shadow-[0_0_15px_rgba(0,255,102,0.3)] flex items-center justify-center gap-2 transition-all uppercase">
+                Proceed to Checkout <Zap className="h-3 w-3" />
               </button>
             </div>
           </motion.div>
