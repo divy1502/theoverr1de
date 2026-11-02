@@ -4,12 +4,15 @@
 
 :root { color-scheme: dark; }
 
-body { 
-  margin: 0; 
-  background-color: #050B14;
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: #05080C;
   color: #e2e8f0;
   overflow-x: hidden;
   font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -20,25 +23,62 @@ code, pre, .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Custom hacker scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #050712; 
+  background: #05080C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #008A35; 
+  background: #1F2A36;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #007A2F; 
+  background: #008A35;
 }
 
 /* Global Grid Background */
 .bg-hacker-grid {
-  background-image: 
-    linear-gradient(to right, rgba(0, 138, 53, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 138, 53, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Grid that fades out toward the edges */
+.bg-grid-fade {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-hacker-green text-white font-mono font-semibold
+      shadow-[0_8px_24px_-12px_rgba(0,138,53,0.9)] transition-all duration-200
+      hover:bg-hacker-green-dark hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-10px_rgba(0,138,53,0.9)];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] text-gray-200 font-mono font-semibold
+      transition-all duration-200 hover:border-hacker-green/60 hover:bg-hacker-green/10 hover:text-white;
+  }
+  .card {
+    @apply rounded-xl border border-white/[0.08] bg-hacker-800/80;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-hacker-signal;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl font-display font-bold text-white tracking-tight;
+  }
+  .window-dots {
+    @apply flex items-center gap-1.5;
+  }
+  .window-dots > span {
+    @apply h-2.5 w-2.5 rounded-full bg-white/15;
+  }
 }
