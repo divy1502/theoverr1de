@@ -27,7 +27,7 @@ const Pricing = () => {
       className="border-t border-hacker-green/20 py-24 relative overflow-hidden bg-hacker-900"
     >
       {/* Background Glow */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,255,102,0.05),transparent_70%)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(0,138,53,0.05),transparent_70%)]" />
       <div className="absolute -top-40 -right-40 w-[420px] h-[420px] rounded-full bg-hacker-cyan/5 blur-[120px] pointer-events-none animate-pulse-glow" />
       <div className="absolute -bottom-40 -left-40 w-[420px] h-[420px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none animate-pulse-glow" />
 
@@ -45,7 +45,7 @@ const Pricing = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
             {/* FREE */}
             <motion.div
-              whileHover={{ y: -5, boxShadow: "0 0 20px rgba(0,255,102,0.2)" }}
+              whileHover={{ y: -5, boxShadow: "0 0 20px rgba(0,138,53,0.2)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="bg-hacker-800/80 backdrop-blur-md border border-white/10 hover:border-hacker-green/50 rounded-sm p-6 flex flex-col justify-between transition-colors relative"
             >
@@ -212,11 +212,11 @@ const Pricing = () => {
 
             {/* ONE-TIME */}
             <motion.div
-              whileHover={{ y: -5, boxShadow: "0 0 25px rgba(0,255,102,0.3)" }}
+              whileHover={{ y: -5, boxShadow: "0 0 25px rgba(0,138,53,0.3)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-hacker-800/80 backdrop-blur-md border border-hacker-green/40 hover:border-hacker-green/70 rounded-sm p-6 shadow-[0_0_15px_rgba(0,255,102,0.05)] flex flex-col justify-between group overflow-hidden relative transition-colors"
+              className="bg-hacker-800/80 backdrop-blur-md border border-hacker-green/40 hover:border-hacker-green/70 rounded-sm p-6 shadow-[0_0_15px_rgba(0,138,53,0.05)] flex flex-col justify-between group overflow-hidden relative transition-colors"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-hacker-green opacity-60 group-hover:shadow-[0_0_15px_rgba(0,255,102,1)] transition-shadow" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-hacker-green opacity-60 group-hover:shadow-[0_0_15px_rgba(0,138,53,1)] transition-shadow" />
               <div>
                 <div className="flex items-center gap-2">
                   <FileText className="h-5 w-5 text-hacker-green" />
@@ -270,7 +270,7 @@ const Pricing = () => {
 
               <button
                 onClick={() => setSelectedPlan("one-time")}
-                className="mt-8 w-full py-3 rounded-sm font-mono font-bold bg-[#050b14] hover:bg-hacker-green/10 text-hacker-green text-sm border border-hacker-green/50 flex items-center justify-center gap-2 transition-colors uppercase hover:shadow-[0_0_15px_rgba(0,255,102,0.2)]"
+                className="mt-8 w-full py-3 rounded-sm font-mono font-bold bg-[#050b14] hover:bg-hacker-green/10 text-hacker-green text-sm border border-hacker-green/50 flex items-center justify-center gap-2 transition-colors uppercase hover:shadow-[0_0_15px_rgba(0,138,53,0.2)]"
               >
                 <Mail className="h-4 w-4" /> Extract Intel
               </button>
@@ -286,7 +286,7 @@ const Pricing = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="w-full max-w-md bg-hacker-800 border-2 border-hacker-green rounded-sm p-6 shadow-[0_0_50px_rgba(0,255,102,0.2)] relative overflow-hidden"
+            className="w-full max-w-md bg-hacker-800 border-2 border-hacker-green rounded-sm p-6 shadow-[0_0_50px_rgba(0,138,53,0.2)] relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-hacker-green animate-pulse" />
             
@@ -303,7 +303,7 @@ const Pricing = () => {
 
             <div className="mt-5 text-xs text-gray-300 font-mono space-y-3 bg-[#050b14] p-4 border border-hacker-green/10 rounded-sm">
               <p className="flex items-start gap-3">
-                <span className="w-1.5 h-1.5 mt-1 rounded-full bg-hacker-green shadow-[0_0_5px_rgba(0,255,102,0.8)]" />
+                <span className="w-1.5 h-1.5 mt-1 rounded-full bg-hacker-green shadow-[0_0_5px_rgba(0,138,53,0.8)]" />
                 <span>Full diagnostic report with risk mapping.</span>
               </p>
               <p className="flex items-start gap-3">
@@ -323,7 +323,7 @@ const Pricing = () => {
               >
                 Abort
               </button>
-              <button className="w-full sm:w-auto px-6 py-3 rounded-sm font-mono text-xs font-bold bg-hacker-green text-black hover:bg-[#00e65c] shadow-[0_0_15px_rgba(0,255,102,0.3)] flex items-center justify-center gap-2 transition-all uppercase">
+              <button className="w-full sm:w-auto px-6 py-3 rounded-sm font-mono text-xs font-bold bg-hacker-green text-black shadow-[0_0_15px_rgba(0,138,53,0.3)] hover:bg-[#007A2F] hover:shadow-[0_0_20px_rgba(0,138,53,0.5)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 uppercase">
                 Proceed to Checkout <Zap className="h-3 w-3" />
               </button>
             </div>

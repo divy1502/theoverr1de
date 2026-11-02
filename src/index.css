@@ -9,11 +9,11 @@ body {
   background-color: #050B14;
   color: #e2e8f0;
   overflow-x: hidden;
-  font-family: 'Inter', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 code, pre, .font-mono {
@@ -28,17 +28,17 @@ code, pre, .font-mono {
   background: #050712; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #10B981; 
+  background: #008A35; 
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #059669; 
+  background: #007A2F; 
 }
 
 /* Global Grid Background */
 .bg-hacker-grid {
   background-image: 
-    linear-gradient(to right, rgba(0, 255, 102, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 138, 53, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 138, 53, 0.03) 1px, transparent 1px);
   background-size: 30px 30px;
 }

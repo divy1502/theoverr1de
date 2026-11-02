@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
+        sans: ["JetBrains Mono", "monospace"],
+        display: ["JetBrains Mono", "monospace"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
@@ -13,7 +13,7 @@ export default {
           900: "#050B14",
           800: "#091428",
           700: "#0D1E3A",
-          green: "#00FF66",
+          green: "#008A35",
           cyan: "#00E5FF",
           purple: "#B200FF",
         },

@@ -104,7 +104,7 @@ const Header = () => {
         <div className="hidden md:block">
           <a
             href="#tool"
-            className="rounded-sm bg-hacker-green text-black px-4 py-2 font-mono font-bold shadow-[0_0_15px_rgba(0,255,102,0.3)] hover:shadow-[0_0_20px_rgba(0,255,102,0.5)] transition-all flex items-center"
+            className="rounded-sm bg-hacker-green text-black px-4 py-2 font-mono font-bold shadow-[0_0_15px_rgba(0,138,53,0.3)] hover:bg-[#007A2F] hover:shadow-[0_0_20px_rgba(0,138,53,0.5)] hover:-translate-y-0.5 transition-all flex items-center"
           >
             INITIATE <ArrowRight className="ml-2 h-4 w-4" />
           </a>
@@ -140,7 +140,7 @@ const Header = () => {
               <div className="pt-4 border-t border-hacker-green/10">
                 <a
                   href="#tool"
-                  className="rounded-sm bg-hacker-green text-black px-4 py-3 font-mono font-bold w-full flex justify-between items-center transition-all uppercase"
+                  className="rounded-sm bg-hacker-green text-black px-4 py-3 font-mono font-bold w-full flex justify-between items-center shadow-[0_0_15px_rgba(0,138,53,0.3)] hover:bg-[#007A2F] hover:shadow-[0_0_20px_rgba(0,138,53,0.5)] hover:-translate-y-0.5 transition-all uppercase"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   INITIALIZE SYS.SCAN
@@ -192,7 +192,7 @@ const Hero = ({ onStart }) => (
                 ?.scrollIntoView({ behavior: "smooth" });
               onStart?.();
             }}
-            className="inline-flex items-center rounded-sm bg-hacker-green text-black px-8 py-4 font-mono font-bold shadow-[0_0_20px_rgba(0,255,102,0.4)] hover:shadow-[0_0_30px_rgba(0,255,102,0.6)] hover:-translate-y-0.5 transition-all"
+            className="inline-flex items-center rounded-sm bg-hacker-green text-black px-8 py-4 font-mono font-bold shadow-[0_0_15px_rgba(0,138,53,0.3)] hover:bg-[#007A2F] hover:shadow-[0_0_20px_rgba(0,138,53,0.5)] hover:-translate-y-0.5 transition-all"
           >
             COMMENCE HACK <ArrowRight className="ml-2 h-5 w-5" />
           </a>
@@ -205,9 +205,9 @@ const Hero = ({ onStart }) => (
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="hidden lg:block relative h-[420px] w-full rounded-sm border border-hacker-green/30 bg-[#050b14] overflow-hidden shadow-[0_0_40px_rgba(0,255,102,0.1)]"
+        className="hidden lg:block relative h-[420px] w-full rounded-sm border border-hacker-green/30 bg-[#050b14] overflow-hidden shadow-[0_0_40px_rgba(0,138,53,0.1)]"
       >
-        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(0,255,102,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,102,0.2)_1px,transparent_1px)] bg-[size:30px_30px] rounded-sm" />
+        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(0,138,53,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(0,138,53,0.2)_1px,transparent_1px)] bg-[size:30px_30px] rounded-sm" />
 
         {/* Radar/Scan Element */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-hacker-green/40 rounded-full flex items-center justify-center">
@@ -259,7 +259,7 @@ const Hero = ({ onStart }) => (
 ------------------------------------------- */
 const ProgressBar = ({ value }) => (
   <div className="w-full h-1.5 bg-hacker-800 rounded-none overflow-hidden border border-hacker-green/20">
-    <div className="h-full bg-hacker-green shadow-[0_0_8px_rgba(0,255,102,0.6)] transition-all duration-300" style={{ width: `${value}%` }} />
+    <div className="h-full bg-hacker-green shadow-[0_0_8px_rgba(0,138,53,0.6)] transition-all duration-300" style={{ width: `${value}%` }} />
   </div>
 );
 
@@ -339,7 +339,7 @@ const Tool = () => {
   return (
     <section id="tool" className="relative border-t border-hacker-green/20 bg-hacker-900 bg-hacker-grid py-20">
       <div className="max-w-4xl mx-auto px-6">
-        <motion.div initial="hidden" whileInView="show" variants={fade} className="bg-hacker-800/80 backdrop-blur-md border border-hacker-green/30 p-8 rounded-sm shadow-[0_0_30px_rgba(0,255,102,0.05)]">
+        <motion.div initial="hidden" whileInView="show" variants={fade} className="bg-hacker-800/80 backdrop-blur-md border border-hacker-green/30 p-8 rounded-sm shadow-[0_0_30px_rgba(0,138,53,0.05)]">
           {/* --- Title --- */}
           <h2 className="text-3xl font-display font-bold text-white flex items-center gap-3">
             <Terminal className="h-7 w-7 text-hacker-green" />
@@ -359,7 +359,7 @@ const Tool = () => {
               className={cn(
                 "w-full rounded-sm bg-[#050b14] px-5 py-4 text-white font-mono focus:outline-none transition-all border",
                 valid
-                  ? "border-hacker-green/40 focus:border-hacker-green focus:shadow-[0_0_10px_rgba(0,255,102,0.2)]"
+                  ? "border-hacker-green/40 focus:border-hacker-green focus:shadow-[0_0_10px_rgba(0,138,53,0.2)]"
                   : "border-red-500/40"
               )}
             />
@@ -370,7 +370,7 @@ const Tool = () => {
                 "rounded-sm px-8 py-4 font-mono font-bold flex items-center justify-center transition-all",
                 running
                   ? "bg-gray-800 text-gray-500 cursor-not-allowed border border-gray-700"
-                  : "bg-hacker-green text-black hover:bg-[#00e65c] shadow-[0_0_15px_rgba(0,255,102,0.3)]"
+                  : "bg-hacker-green text-black shadow-[0_0_15px_rgba(0,138,53,0.3)] hover:bg-[#007A2F] hover:shadow-[0_0_20px_rgba(0,138,53,0.5)] hover:-translate-y-0.5 transition-all"
               )}
             >
               {running ? "SCANNING…" : "EXECUTE"}
@@ -729,7 +729,7 @@ const Newsletter = () => {
           />
           <button
             onClick={handleSubscribe}
-            className="bg-hacker-green text-black font-mono font-bold px-6 py-3 shadow-[0_0_10px_rgba(0,255,102,0.3)] hover:shadow-[0_0_15px_rgba(0,255,102,0.6)] hover:bg-[#00e65c] transition-all rounded-sm uppercase"
+            className="bg-hacker-green text-black font-mono font-bold px-6 py-3 shadow-[0_0_15px_rgba(0,138,53,0.3)] hover:bg-[#007A2F] hover:shadow-[0_0_20px_rgba(0,138,53,0.5)] hover:-translate-y-0.5 transition-all rounded-sm uppercase"
           >
             Connect
           </button>
